@@ -1,0 +1,6 @@
+.*
+*.komodoproject
+*.ERR
+*.html
+*~ko-*
+Dancer2-Logger-Console-Colored-*
