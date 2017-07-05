@@ -83,7 +83,7 @@ sub format_message {
   $message = Encode::encode( $self->auto_encoding_charset, $message )
     if $self->auto_encoding_charset;
 
-  my @stack = caller(6);
+  my @stack = caller(8);
 
   my $block_handler = sub {
     my ( $block, $type ) = @_;
@@ -135,17 +135,17 @@ sub format_message {
 }
 
 1;
- 
+
 __END__
 
 =method log
 
 Writes the log message to the console.
- 
+
 =pod
 
 =head1 DESCRIPTION
- 
+
 This is a logging engine that allows you to print colored debug messages on
 the standard error output.
 
