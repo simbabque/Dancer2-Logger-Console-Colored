@@ -177,6 +177,12 @@ In your I<config.yml> (or I<$environment.yml>):
             warning: "bold yellow"
             error: "bold yellow on_red"
 
+=head1 BREAKING CHANGES
+
+If you are running on L<Dancer2> older than 0.166001_01 you will need to use
+L<Dancer2::Logger::Console::Colored> version 0.001 because L<Dancer2> changed
+the way the logging was handled.
+
 =head1 SEE ALSO
 
 L<Dancer2::Logger::Console>, L<Dancer2::Core::Role::Logger>,
