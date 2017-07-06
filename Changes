@@ -1,0 +1,11 @@
+Revision history for Dancer2-Logger-Console-Colored
+
+{{$NEXT}}
+        - GH #4: Fix bug where the line number and file name of the source
+          of the error message is wrong. (Steve Guo)
+        - Add unit tests. (simbabque)
+        - Require at least Dancer2 version 0.166001_01. You probably want
+          at least 0.200. (simbabque)
+
+0.001   2014-08-11 12:16:13Z
+        - Initial release.
