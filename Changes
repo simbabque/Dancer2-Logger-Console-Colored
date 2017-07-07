@@ -1,6 +1,10 @@
 Revision history for Dancer2-Logger-Console-Colored
 
 {{$NEXT}}
+
+0.003     2017-07-07 10:13:50+02:00 Europe/Berlin
+
+0.003     2017-07-07 10:12:15+02:00 Europe/Berlin
         - Rerelease the previous version because it was broken.
 
 0.002   2017-06-06 16:47:00Z 
