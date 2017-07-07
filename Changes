@@ -1,6 +1,9 @@
 Revision history for Dancer2-Logger-Console-Colored
 
 {{$NEXT}}
+        - Rerelease the previous version because it was broken.
+
+0.002   2017-06-06 16:47:00Z 
         - GH #4: Fix bug where the line number and file name of the source
           of the error message is wrong. (Steve Guo)
         - Add unit tests. (simbabque)
