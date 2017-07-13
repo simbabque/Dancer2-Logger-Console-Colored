@@ -8,7 +8,7 @@ BEGIN {
 
 use Term::ANSIColor;
 use Moo;
-use Dancer2::Core::Types qw( HashRef Str );
+use Dancer2::Core::Types qw( ArrayRef HashRef Str );
 
 extends 'Dancer2::Logger::Console';
 
@@ -27,6 +27,12 @@ has colored_messages => (
   is      => 'rw',
   isa     => HashRef [Str],
   default => sub { {} },
+);
+
+has colored_regex => (
+  is      => 'rw',
+  isa     => ArrayRef [ HashRef [Str] ],
+  default => sub { [] },
 );
 
 sub colorize_origin {
@@ -61,6 +67,16 @@ sub colorize_message {
   my $level_tmp = $level =~ s/\s+//gr;
   $level_tmp = 'warning' if $level_tmp eq 'warn';
 
+  # Check for regex match.
+  my $match;
+  foreach my $pattern ( @{ $self->colored_regex } ) {
+    if ($message =~ m/$pattern->{re}/) {
+      $message =~ s{($pattern->{re})}{colored($1, $pattern->{color} )}eg;
+      ++$match;
+    }
+  }
+  return $message if $match;
+  
   # Configured color.
   return colored( $message, $self->colored_messages->{$level_tmp} ) if $self->colored_messages->{$level_tmp};
 
