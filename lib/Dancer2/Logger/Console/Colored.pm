@@ -152,10 +152,6 @@ sub format_message {
 
 __END__
 
-=method log
-
-Writes the log message to the console.
-
 =pod
 
 =head1 DESCRIPTION
@@ -190,6 +186,40 @@ In your I<config.yml> (or I<$environment.yml>):
             info: "bold green"
             warning: "bold yellow"
             error: "bold yellow on_red"
+
+=head2 Using Regex
+
+You can also provide a configuration key C<colored_regex>, which will allow you
+to give multiple pairs of regular expression patterns and colors. The logger will
+then change the colors of anything that matches a pattern according to the configuration.
+
+To enable it, use this (additional) configuration.
+
+          colored_regex:
+            - re: "customer number \d+"
+              color: "bold red"
+
+It can also be used to highlight full lines. Just provide a pattern that grabs everything.
+
+          colored_regex:
+            - re: ".+error.+"
+              color: "white on_red"
+
+Note that in YAML and other config formats, the pattern can only be a string. If you enable
+this from within your application, you also also need to supply a string, not a C<qr//>.
+
+    $logger->colored_regex(
+        [
+            {
+                re    => 'foobar',
+                color => 'cyan',
+            },
+            {
+                re    => '\d+',
+                color => 'magenta',
+            },
+        ]
+    );
 
 =head1 BREAKING CHANGES
 
