@@ -68,14 +68,12 @@ sub colorize_message {
   $level_tmp = 'warning' if $level_tmp eq 'warn';
 
   # Check for regex match.
-  my $match;
   foreach my $pattern ( @{ $self->colored_regex } ) {
     if ($message =~ m/$pattern->{re}/) {
       $message =~ s{($pattern->{re})}{colored($1, $pattern->{color} )}eg;
-      ++$match;
+      return $message;
     }
   }
-  return $message if $match;
   
   # Configured color.
   return colored( $message, $self->colored_messages->{$level_tmp} ) if $self->colored_messages->{$level_tmp};
