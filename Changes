@@ -1,6 +1,8 @@
 Revision history for Dancer2-Logger-Console-Colored
 
 {{$NEXT}}
+        - GH #6: Add note to SYNOPSIS that the logger needs to to enabled in the 
+          environment (simbabque, thanks niceperl)
 
 0.004     2017-10-11 01:27:35+02:00 Europe/Berlin
         - GH #1: Add a new colored_regex option to highlight parts of log messages

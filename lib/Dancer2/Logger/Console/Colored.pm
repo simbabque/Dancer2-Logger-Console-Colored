@@ -169,8 +169,10 @@ Writes the log message to the console.
 The setting C<logger> should be set to C<Console::Colored> in order to use
 this logging engine in a Dancer2 application.
 
-In your I<config.yml> (or I<$environment.yml>):
+    # environment.yml or production.yml
+    logger: "Console::Colored"
 
+    # config.yml (these are the defaults)
     engines:
       logger:
         Console::Colored:
