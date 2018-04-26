@@ -157,7 +157,7 @@ __END__
 =head1 DESCRIPTION
 
 This is a logging engine that allows you to print colored debug messages on
-the standard error output. It is based on L<Dancer2::Logger:Console>. Refer
+the standard error output. It is based on L<Dancer2::Logger::Console>. Refer
 to its documentation for how to configure the format of your log message.
 
 =head2 log
