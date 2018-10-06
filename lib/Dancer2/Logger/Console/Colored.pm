@@ -12,6 +12,8 @@ use Dancer2::Core::Types qw( ArrayRef HashRef Str );
 
 extends 'Dancer2::Logger::Console';
 
+use namespace::clean;
+
 has colored_origin => (
   is  => 'rw',
   isa => Str,
