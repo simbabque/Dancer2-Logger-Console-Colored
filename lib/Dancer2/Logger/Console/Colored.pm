@@ -74,7 +74,7 @@ sub colorize_message {
       return $message;
     }
   }
-  
+
   # Configured color.
   return colored( $message, $self->colored_messages->{$level_tmp} ) if $self->colored_messages->{$level_tmp};
 
