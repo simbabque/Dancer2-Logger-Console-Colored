@@ -237,4 +237,7 @@ the way the logging was handled.
 L<Dancer2::Logger::Console>, L<Dancer2::Core::Role::Logger>,
 L<Term::ANSIColor>
 
+=for Pod::Coverage 
+    colorize_message colorize_origin format_message colorize_level
+
 =cut
