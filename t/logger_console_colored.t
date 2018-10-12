@@ -128,13 +128,13 @@ for my $level (qw( core debug info warning error )) {
         hello
         \s
         \e\[36m                 # cyan, we set that above
-            foobar  
+            foobar
         \e\[0m                  # end of coloring
         \s
         hello
         \s
         \e\[36m                 # cyan, we set that above
-            foobar  
+            foobar
         \e\[0m                  # end of coloring
         \s                      # whitespace
         in                      # "in"
@@ -158,14 +158,14 @@ for my $level (qw( core debug info warning error )) {
             info                # name of the level
         \e\[0m                  # end of coloring
     }x, "... and the level is unaffected";
-    
+
     $stderr = capture_stderr { $l->info("asdf 1234") };
-    
+
     like $stderr, qr{
         asdf
         \s
         \e\[35m                 # magenta, we set that above
-            1234  
+            1234
         \e\[0m                  # end of coloring
         \s                      # whitespace
         in                      # "in"

@@ -12,6 +12,8 @@ use Dancer2::Core::Types qw( ArrayRef HashRef Str );
 
 extends 'Dancer2::Logger::Console';
 
+use namespace::clean;
+
 has colored_origin => (
   is  => 'rw',
   isa => Str,
@@ -74,7 +76,7 @@ sub colorize_message {
       return $message;
     }
   }
-  
+
   # Configured color.
   return colored( $message, $self->colored_messages->{$level_tmp} ) if $self->colored_messages->{$level_tmp};
 
@@ -234,5 +236,8 @@ the way the logging was handled.
 
 L<Dancer2::Logger::Console>, L<Dancer2::Core::Role::Logger>,
 L<Term::ANSIColor>
+
+=for Pod::Coverage 
+    colorize_message colorize_origin format_message colorize_level
 
 =cut
