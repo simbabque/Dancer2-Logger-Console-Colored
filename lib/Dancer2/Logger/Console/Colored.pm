@@ -9,6 +9,7 @@ BEGIN {
 use Term::ANSIColor;
 use Moo;
 use Dancer2::Core::Types qw( ArrayRef HashRef Str );
+use Encode;
 
 extends 'Dancer2::Logger::Console';
 
@@ -90,7 +91,7 @@ sub colorize_message {
 }
 
 # This comes original from Dancer2::Logger::Console. There are a few hooks
-# required in order to colorize log messages propably.
+# required in order to colorize log messages properly.
 sub format_message {
   my ( $self, $level, $message ) = @_;
   chomp $message;
@@ -100,11 +101,19 @@ sub format_message {
     if $self->auto_encoding_charset;
 
   my @stack = caller(8);
+  my $request = $self->request;
+  my $config = $self->config;
 
   my $block_handler = sub {
     my ( $block, $type ) = @_;
     if ( $type eq 't' ) {
-      return "[" . strftime( $block, localtime(time) ) . "]";
+      return Encode::decode(
+        $config->{'charset'} || 'UTF-8',
+        POSIX::strftime( $block, localtime(time) )
+      );
+    }
+    elsif ( $type eq 'h' ) {
+      return ( $request && $request->header($block) ) || '-';
     }
     else {
       Carp::carp("{$block}$type not supported");
@@ -116,15 +125,29 @@ sub format_message {
     a => sub { $self->colorize_origin( $self->app_name ) },
     t => sub {
       Encode::decode(
-        setting('charset'),
-        POSIX::strftime( "%d/%b/%Y %H:%M:%S", localtime(time) ) );
+        $config->{'charset'} || 'UTF-8',
+        POSIX::strftime( "%d/%b/%Y %H:%M:%S", localtime(time) )
+      );
     },
     T => sub { POSIX::strftime( "%Y-%m-%d %H:%M:%S", localtime(time) ) },
+    u => sub {
+      Encode::decode(
+        $config->{'charset'} || 'UTF-8',
+        POSIX::strftime( "%d/%b/%Y %H:%M:%S", gmtime(time) )
+      );
+    },
+    U => sub { POSIX::strftime( "%Y-%m-%d %H:%M:%S", gmtime(time) ) },
     P => sub { $$ },
     L => sub { $self->colorize_level($level) },
     m => sub { $self->colorize_message( $level => $message ) },
     f => sub { $self->colorize_origin( $stack[1] || '-' ) },
     l => sub { $self->colorize_origin( $stack[2] || '-' ) },
+    h => sub {
+      $self->colorize_origin(
+        ( $request && ( $request->remote_host || $request->address ) ) || '-'
+      )
+    },
+    i => sub { ( $request && $request->id ) || '-' },
   };
 
   my $char_mapping = sub {
