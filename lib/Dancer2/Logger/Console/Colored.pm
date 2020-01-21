@@ -255,6 +255,16 @@ If you are running on L<Dancer2> older than 0.166001_01 you will need to use
 L<Dancer2::Logger::Console::Colored> version 0.001 because L<Dancer2> changed
 the way the logging was handled.
 
+=head1 BLOG POSTS
+
+=over
+
+=item *
+
+L<2018 Dancer Advent Calendar article|http://advent.perldancer.org/2018/23>
+
+=back
+
 =head1 SEE ALSO
 
 L<Dancer2::Logger::Console>, L<Dancer2::Core::Role::Logger>,
