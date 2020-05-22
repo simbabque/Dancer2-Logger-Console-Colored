@@ -107,10 +107,7 @@ sub format_message {
   my $block_handler = sub {
     my ( $block, $type ) = @_;
     if ( $type eq 't' ) {
-      return Encode::decode(
-        $config->{'charset'} || 'UTF-8',
-        POSIX::strftime( $block, localtime(time) )
-      );
+        POSIX::strftime( $block, localtime(time) );
     }
     elsif ( $type eq 'h' ) {
       return ( $request && $request->header($block) ) || '-';
@@ -124,18 +121,10 @@ sub format_message {
   my $chars_mapping = {
     a => sub { $self->colorize_origin( $self->app_name ) },
     t => sub {
-      Encode::decode(
-        $config->{'charset'} || 'UTF-8',
-        POSIX::strftime( "%d/%b/%Y %H:%M:%S", localtime(time) )
-      );
+        POSIX::strftime( "%d/%b/%Y %H:%M:%S", localtime(time) );
     },
     T => sub { POSIX::strftime( "%Y-%m-%d %H:%M:%S", localtime(time) ) },
-    u => sub {
-      Encode::decode(
-        $config->{'charset'} || 'UTF-8',
-        POSIX::strftime( "%d/%b/%Y %H:%M:%S", gmtime(time) )
-      );
-    },
+    u => sub { POSIX::strftime( "%d/%b/%Y %H:%M:%S", gmtime(time) ) },
     U => sub { POSIX::strftime( "%Y-%m-%d %H:%M:%S", gmtime(time) ) },
     P => sub { $$ },
     L => sub { $self->colorize_level($level) },
