@@ -1,6 +1,8 @@
 language: perl
 perl:
     - "blead"
+    - "5.30"
+    - "5.28"
     - "5.26"
     - "5.24"
     - "5.22"
@@ -12,10 +14,17 @@ perl:
 before_install:
   - eval $(curl https://travis-perl.github.io/init) --auto
 
+addons:
+  apt:
+    packages:
+      - language-pack-de
+
 matrix:
   include:
     - perl: 5.18
       env: COVERAGE=1 # enables coverage+coveralls reporting
+    - perl: 5.28
+      env: LC_ALL=de_DE.UTF-8
   allow_failures:
     - perl: blead     # ignores failures for blead perl
 

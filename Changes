@@ -1,6 +1,8 @@
 Revision history for Dancer2-Logger-Console-Colored
 
 {{$NEXT}}
+	- GH #1: Fix encoding problems with some locales
+	- Add blog post to documentation
 
 0.006     2017-10-13 18:11:06+02:00 Europe/Berlin
 	- Rerelease the previous version because it was broken.
