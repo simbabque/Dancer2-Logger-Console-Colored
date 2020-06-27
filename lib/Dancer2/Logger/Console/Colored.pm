@@ -172,11 +172,18 @@ __END__
 
 This is a logging engine that allows you to print colored debug messages on
 the standard error output. It is based on L<Dancer2::Logger::Console>. Refer
-to its documentation for how to configure the format of your log message.
+to L<Dancer::Logger::Abstract> and L<Dancer2::Config> for how to configure the format of your log message.
 
-=head2 log
+=head1 SYNOPSIS
 
-Writes the log message to the console.
+   use Dancer2;
+
+   set 'logger' => 'Console::Colored';
+
+   get '/' => sub {
+      log "debug", "GET: Root path";  # or simply: debug "GET: Root path";
+      "Hello World!"
+   };
 
 =head1 CONFIGURATION
 
