@@ -172,7 +172,7 @@ __END__
 
 This is a logging engine that allows you to print colored debug messages on
 the standard error output. It is based on L<Dancer2::Logger::Console>. Refer
-to L<Dancer::Logger::Abstract> and L<Dancer2::Config> for how to configure the format of your log message.
+to L<Dancer2::Core::Role::Logger> and L<Dancer2::Config> for how to configure the format of your log message.
 
 =head1 SYNOPSIS
 
